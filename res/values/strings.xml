@@ -5,6 +5,7 @@
     <string name="list">list</string>
     <string name="add">add</string>
     <string name="weather">weather</string>
+    <string name="statistics">statistics</string>
     <string name="dinner">dinner</string>
     <string name="schedule">schedule</string>
     <string name="spinner_prompt_text">시간 지정</string>
@@ -23,6 +24,7 @@
 
     <string name="tabIdList">list</string>
     <string name="tabIdAdd">add</string>
+    <string name="tabStatistics">statistics</string>
     <string name="tabIdSchedule">schedule</string>
     <string name="tabIdWeather">weather</string>
     <string name="tabIdDinner">dinner</string>

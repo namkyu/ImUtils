@@ -54,10 +54,10 @@ public class ImUtils extends TabActivity {
 //				.setIndicator(getString(R.string.list), getResources().getDrawable(R.drawable.list))
 //				.setContent(new Intent(this, WakeOnLanListActivity.class)));
 //
-//		tabHost.addTab(tabHost
-//				.newTabSpec(getString(R.string.tabIdAdd))
-//				.setIndicator(getString(R.string.add), getResources().getDrawable(R.drawable.add))
-//				.setContent(new Intent(this, AddActivity.class)));
+		tabHost.addTab(tabHost
+				.newTabSpec(getString(R.string.tabStatistics))
+				.setIndicator(getString(R.string.statistics), getResources().getDrawable(R.drawable.add))
+				.setContent(new Intent(this, BarChartActivity.class)));
 
 		tabHost.addTab(tabHost
 				.newTabSpec(getString(R.string.tabIdWeather))
