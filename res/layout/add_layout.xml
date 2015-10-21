@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+  	android:id="@+id/addLayout"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/nameText"
+		style="@style/yellowTextStyle" />
+	<EditText
+		android:id="@+id/nameTextBox"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:scrollHorizontally="true"
+	    android:hint="@string/nameHintText"
+	    android:text="@string/nameHintText" />
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/macText"
+		style="@style/yellowTextStyle" />
+	<EditText
+		android:id="@+id/macTextBox"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:scrollHorizontally="true"
+	    android:hint="@string/macHintText"
+	    android:text="@string/macHintText" />
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/ipText"
+		style="@style/yellowTextStyle" />
+	<EditText
+		android:id="@+id/ipTextBox"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:scrollHorizontally="true"
+	    android:hint="@string/ipHintText"
+	    android:text="@string/ipHintText" />
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/portText"
+		style="@style/yellowTextStyle" />
+	<EditText
+		android:id="@+id/portTextBox"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:scrollHorizontally="true"
+	    android:inputType="number"
+	    android:hint="@string/portHintText"
+	    android:text="@string/portHintText" />
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:padding="10px">
+		<ImageButton
+		    android:id="@+id/addButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/add_button" />
+		<ImageButton
+			android:id="@+id/cancelButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/cancel_button" />
+	</LinearLayout>
+
+</LinearLayout>
