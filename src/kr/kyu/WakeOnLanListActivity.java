@@ -1,20 +1,15 @@
 /*
  * @(#)WakeOnLanListActivity.java	2015. 10. 16
- * 
+ *
  * Copyright(c) 2009 namkyu.
- * 
+ *
  * NOTICE:
  * This source code that is confidential and proprietary to namkyu.
- * No part of this source code may be reproduced in any form 
+ * No part of this source code may be reproduced in any form
  * whatsoever without prior approval by namkyu.
  */
 package kr.kyu;
 
-import kr.kyu.common.Constants;
-import kr.kyu.db.DBAdapter;
-import kr.kyu.udp.MagicPacketBean;
-import kr.kyu.udp.WakeOnLanAgent;
-import kr.kyu.util.CommonUtil;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -26,6 +21,11 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import kr.kyu.common.Constants;
+import kr.kyu.db.DBAdapter;
+import kr.kyu.udp.MagicPacketBean;
+import kr.kyu.udp.WakeOnLanAgent;
+import kr.kyu.util.CommonUtil;
 
 
 /**
@@ -54,6 +54,7 @@ public class WakeOnLanListActivity extends ListActivity {
 	 * @param savedInstanceState the saved instance state
 	 */
 	@Override
+	@SuppressWarnings("deprecation")
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 

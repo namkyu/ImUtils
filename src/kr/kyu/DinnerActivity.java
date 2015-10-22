@@ -11,31 +11,21 @@
 package kr.kyu;
 
 import android.app.Activity;
-import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-/**
- * The Class AddActivity.
- */
 public class DinnerActivity extends Activity {
 
 	final String TAG = "AndroidDEV_UI";
 	public ImageButton m_btnNetworkInfo = null;
 	public TextView m_tvNetworkInfo2 = null;
 
-	/**
-	 * @author : byeori
-	 * @Date : 2014. 2. 10., 오전 11:09:49
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -54,11 +44,11 @@ public class DinnerActivity extends Activity {
 				String m_strName = new String();
 				String m_strNetType = new String();
 				int m_iNetworkType = activeNetwork.getType();
-				if (m_iNetworkType == cm.TYPE_WIFI) {
+				if (m_iNetworkType == ConnectivityManager.TYPE_WIFI) {
 					// Wi_Fi 사용 시 AP의 SSID를 가져온다.
 					m_strName = wifiManager.getConnectionInfo().getSSID();
 					m_strNetType = "Wi-Fi";
-				} else if (m_iNetworkType == cm.TYPE_MOBILE) {
+				} else if (m_iNetworkType == ConnectivityManager.TYPE_MOBILE) {
 					// 모바일 네트워크 사용 시 네트워크 정보를 가져온다.
 					m_strName = activeNetwork.getExtraInfo();
 					m_strNetType = "Mobile";

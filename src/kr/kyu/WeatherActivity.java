@@ -12,11 +12,11 @@ package kr.kyu;
 
 import java.util.List;
 
+import org.apache.commons.lang3.CharEncoding;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -65,7 +65,7 @@ public class WeatherActivity extends Activity {
 				try {
 					HttpGet httpGet = new HttpGet(urlString);
 					HttpResponse response = httpClient.execute(httpGet);
-					String responseBodyJson = EntityUtils.toString(response.getEntity(), HTTP.UTF_8);
+					String responseBodyJson = EntityUtils.toString(response.getEntity(), CharEncoding.UTF_8);
 					String result = null;
 
 					ObjectMapper mapper = new ObjectMapper();
