@@ -22,7 +22,6 @@ import android.widget.TextView;
 
 public class DinnerActivity extends Activity {
 
-	final String TAG = "AndroidDEV_UI";
 	public ImageButton m_btnNetworkInfo = null;
 	public TextView m_tvNetworkInfo2 = null;
 
