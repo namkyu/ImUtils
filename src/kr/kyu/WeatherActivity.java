@@ -66,18 +66,20 @@ public class WeatherActivity extends Activity {
 					HttpGet httpGet = new HttpGet(urlString);
 					HttpResponse response = httpClient.execute(httpGet);
 					String responseBodyJson = EntityUtils.toString(response.getEntity(), CharEncoding.UTF_8);
-					String result = null;
 
 					ObjectMapper mapper = new ObjectMapper();
 					WeatherVO vo = mapper.readValue(responseBodyJson, WeatherVO.class);
 					List<Row> row = vo.getForecastWarningUltrafineParticleOfDustService().getRow();
 					for (Row weatherRowData : row) {
-						result = weatherRowData.getCAISTEP();
+						TextView textView5 = (TextView) findViewById(R.id.textView5);
+						TextView textView6 = (TextView) findViewById(R.id.textView6);
+						TextView textView7 = (TextView) findViewById(R.id.textView7);
+
+						textView5.setText((weatherRowData.getFAON().equals("f")) ? "예보" : "경보");
+						textView6.setText(weatherRowData.getCAISTEP());
+						textView7.setText(weatherRowData.getALARMCNDT());
 						break;
 					}
-
-					TextView resultWeatherTextView = (TextView) findViewById(R.id.resultWeather);
-					resultWeatherTextView.setText(result);
 
 				} catch (Exception e) {
 					Log.e(TAG, e.getLocalizedMessage());

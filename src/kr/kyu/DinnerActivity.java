@@ -10,6 +10,10 @@
  */
 package kr.kyu;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -19,6 +23,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import kr.kyu.util.CommonUtil;
 
 public class DinnerActivity extends Activity {
 
@@ -31,31 +36,38 @@ public class DinnerActivity extends Activity {
 		setContentView(R.layout.dinner_layout);
 
 		m_btnNetworkInfo = (ImageButton) findViewById(R.id.searchButton);
-		m_tvNetworkInfo2 = (TextView) findViewById(R.id.resultDinner);
-
 		m_btnNetworkInfo.setOnClickListener(new View.OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
 				ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 				WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 
 				NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-				String m_strName = new String();
-				String m_strNetType = new String();
-				int m_iNetworkType = activeNetwork.getType();
-				if (m_iNetworkType == ConnectivityManager.TYPE_WIFI) {
-					// Wi_Fi 사용 시 AP의 SSID를 가져온다.
-					m_strName = wifiManager.getConnectionInfo().getSSID();
-					m_strNetType = "Wi-Fi";
-				} else if (m_iNetworkType == ConnectivityManager.TYPE_MOBILE) {
-					// 모바일 네트워크 사용 시 네트워크 정보를 가져온다.
-					m_strName = activeNetwork.getExtraInfo();
-					m_strNetType = "Mobile";
-				} else {
-					m_strNetType = "None";
-				}
 
-				m_tvNetworkInfo2.setText("Name : " + m_strName + ", NetworkType : " + m_strNetType);
+				String wifi = wifiManager.getConnectionInfo().getSSID();
+				String baseStation = activeNetwork.getExtraInfo();
+
+				TextView textView5 = (TextView) findViewById(R.id.textView5);
+				TextView textView6 = (TextView) findViewById(R.id.textView6);
+				textView5.setText(wifi);
+				textView6.setText(baseStation);
+
+
+				// time 정보 가져오기
+				TextView textView7 = (TextView) findViewById(R.id.textView7);
+				String format = new String("yyyy-MM-dd HH:mm:ss");
+				SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.KOREA);
+				textView7.setText(sdf.format(new Date()));
+
+				// 시간 가져오기
+				String hoursStr = new SimpleDateFormat("h", Locale.KOREA).format(new Date());
+				CommonUtil.showShortToast(DinnerActivity.this, "현재 시간은 :" + hoursStr);
+
+				int hour = Integer.parseInt(hoursStr);
+				if (hour >= 8) { // 저녁 8시 이후라면
+					CommonUtil.showShortToast(DinnerActivity.this, "알람을 울려라!!!!!!");
+				}
 			}
 		});
 	}
