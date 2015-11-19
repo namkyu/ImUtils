@@ -2,8 +2,10 @@
 package kr.kyu;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -40,5 +42,15 @@ public class BarChartActivity extends Activity {
 			view.setLayoutParams(params);
 			linearChart.addView(view);
 		}
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId() == 1) { // information
+			Intent intent = new Intent(BarChartActivity.this, InformationTheme.class);
+			startActivity(intent);
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 }
