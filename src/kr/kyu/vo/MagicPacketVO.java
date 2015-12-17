@@ -1,5 +1,5 @@
 /*
- * @(#)MagicPacketBean.java	2015. 10. 16
+ * @(#)MagicPacketBean.java	2015. 12. 17
  * 
  * Copyright(c) 2009 namkyu.
  * 
@@ -8,13 +8,13 @@
  * No part of this source code may be reproduced in any form 
  * whatsoever without prior approval by namkyu.
  */
-package kr.kyu.udp;
+package kr.kyu.vo;
 
 
 /**
  * The Class MagicPacketBean.
  */
-public class MagicPacketBean {
+public class MagicPacketVO {
 
 	/** The port. */
 	private int port;

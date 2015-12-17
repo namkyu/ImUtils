@@ -1,5 +1,5 @@
 /*
- * @(#)ImUtils.java	2015. 10. 16
+ * @(#)ImUtils.java	2015. 12. 17
  *
  * Copyright(c) 2009 namkyu.
  *
@@ -49,25 +49,20 @@ public class ImUtils extends TabActivity {
 
 		tabHost = getTabHost();
 
-//		tabHost.addTab(tabHost
-//				.newTabSpec(getString(R.string.tabIdList))
-//				.setIndicator(getString(R.string.list), getResources().getDrawable(R.drawable.list))
-//				.setContent(new Intent(this, WakeOnLanListActivity.class)));
-//
 		tabHost.addTab(tabHost
-				.newTabSpec(getString(R.string.tabStatistics))
-				.setIndicator(getString(R.string.statistics), getResources().getDrawable(R.drawable.add))
-				.setContent(new Intent(this, BarChartActivity.class)));
+				.newTabSpec(getString(R.string.list))
+				.setIndicator(getString(R.string.list), getResources().getDrawable(R.drawable.list))
+				.setContent(new Intent(this, WakeOnLanListActivity.class)));
 
 		tabHost.addTab(tabHost
-				.newTabSpec(getString(R.string.tabIdWeather))
-				.setIndicator(getString(R.string.weather), getResources().getDrawable(R.drawable.add))
+				.newTabSpec(getString(R.string.add))
+				.setIndicator(getString(R.string.add), getResources().getDrawable(R.drawable.add))
+				.setContent(new Intent(this, AddActivity.class)));
+
+		tabHost.addTab(tabHost
+				.newTabSpec(getString(R.string.weather))
+				.setIndicator(getString(R.string.weather), getResources().getDrawable(R.drawable.search))
 				.setContent(new Intent(this, WeatherActivity.class)));
-
-		tabHost.addTab(tabHost
-				.newTabSpec(getString(R.string.tabIdDinner))
-				.setIndicator(getString(R.string.dinner), getResources().getDrawable(R.drawable.time))
-				.setContent(new Intent(this, DinnerActivity.class)));
 
 		// tab 변경 이벤트 리스너
 		tabHost.setOnTabChangedListener(new OnTabChangeListener() {
@@ -80,15 +75,4 @@ public class ImUtils extends TabActivity {
 		tabHost.setCurrentTab(currentIdx);
 	}
 
-	/**
-	 * <pre>
-	 * onWindowFocusChanged
-	 *
-	 * <pre>
-	 * @param hasFocus
-	 */
-	@Override
-	public void onWindowFocusChanged(boolean hasFocus) {
-		//image 객체 생성
-	}
 }

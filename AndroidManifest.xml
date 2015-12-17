@@ -13,30 +13,18 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".NotificationConfirm" />
-        <activity
             android:name=".AddActivity"
             android:label="AddActivity" />
-        <activity
-            android:name=".ScheduleActivity"
-            android:label="ScheduleActivity" />
         <activity
             android:name=".WakeOnLanListActivity"
             android:label="WakeOnLanListActivity" />
         <activity
             android:name=".WeatherActivity"
             android:label="WeatherActivity" />
-        <activity
-            android:name=".BarChartActivity"
-            android:label="BarChartActivity" />
-        <activity
-            android:name=".DinnerActivity"
-            android:label="DinnerActivity" />
         <activity
             android:name=".InformationTheme"
             android:label="information"

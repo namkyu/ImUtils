@@ -1,5 +1,5 @@
 /*
- * @(#)CommonUtil.java	2015. 10. 16
+ * @(#)CommonUtil.java	2015. 12. 17
  * 
  * Copyright(c) 2009 namkyu.
  * 

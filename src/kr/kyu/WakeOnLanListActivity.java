@@ -1,5 +1,5 @@
 /*
- * @(#)WakeOnLanListActivity.java	2015. 10. 16
+ * @(#)WakeOnLanListActivity.java	2015. 12. 17
  *
  * Copyright(c) 2009 namkyu.
  *
@@ -23,9 +23,9 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import kr.kyu.common.Constants;
 import kr.kyu.db.DBAdapter;
-import kr.kyu.udp.MagicPacketBean;
 import kr.kyu.udp.WakeOnLanAgent;
 import kr.kyu.util.CommonUtil;
+import kr.kyu.vo.MagicPacketVO;
 
 
 /**
@@ -73,7 +73,6 @@ public class WakeOnLanListActivity extends ListActivity {
 		getListView().setOnItemLongClickListener(new OnItemLongClickListener() {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
 				Cursor cursor = (Cursor) adapter.getItem(position);
 				String wolId = cursor.getString(cursor.getColumnIndex(Constants.KEY_ID));
 
@@ -101,30 +100,30 @@ public class WakeOnLanListActivity extends ListActivity {
 	 */
 	@Override
 	public void onListItemClick(ListView list, View view, int position, long id) {
-
 		if (longTouchFlag == false) { // 길게 터치를 안 한 경우에만 WON 패킷을 전송 한다.
 			Cursor cursor = (Cursor)adapter.getItem(position);
 			String name = cursor.getString(cursor.getColumnIndex(Constants.KEY_NAME));
 			String mac = cursor.getString(cursor.getColumnIndex(Constants.KEY_MAC_ADDRESS));
 			String ip = cursor.getString(cursor.getColumnIndex(Constants.KEY_IP_ADDRESS));
 			String port = cursor.getString(cursor.getColumnIndex(Constants.KEY_PORT));
-
 			CommonUtil.d(TAG, "name : " + name + ", mac : " + mac + ", ip : " + ip + ", port : " + port);
 
+			// send magic packet
 			WakeOnLanAgent agent = new WakeOnLanAgent();
-			MagicPacketBean bean = new MagicPacketBean();
+			MagicPacketVO bean = new MagicPacketVO();
 			bean.setDestIp(ip);
 			bean.setDestMacAddr(mac);
 			bean.setPort(Integer.parseInt(port));
 			try {
 				agent.packetSend(bean);
-			} catch (Exception ex) { // 전송 실패
+			} catch (Exception ex) {
 				CommonUtil.e(TAG, "packet send failure " + ex);
 				CommonUtil.showShortToast(this, getString(R.string.packetSendFailure));
 				return;
 			}
 
-			CommonUtil.showShortToast(this, getString(R.string.packetSendSuccess)); // 성공
+			// 성공
+			CommonUtil.showShortToast(this, getString(R.string.packetSendSuccess));
 
 		} else {
 			longTouchFlag = false;

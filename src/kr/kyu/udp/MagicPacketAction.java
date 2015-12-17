@@ -1,5 +1,5 @@
 /*
- * @(#)MagicPacketAction.java	2015. 10. 16
+ * @(#)MagicPacketAction.java	2015. 12. 17
  * 
  * Copyright(c) 2009 namkyu.
  * 
@@ -14,7 +14,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
-import kr.kyu.common.Constants;
+import kr.kyu.vo.MagicPacketVO;
 
 
 /**
@@ -43,6 +43,13 @@ import kr.kyu.common.Constants;
  */
 public class MagicPacketAction {
 
+	// payload 패킷 사이즈 (FF FF FF FF FF FF)
+	public static final int FIRST_PACKET_SIZE = 6;
+	// MAC Address packet loop size
+	public static final int MAC_ADDRESS_LOOP_SIZE = 16;
+	// MAC Address split symbol
+	public static final String MAC_SPLIT_SYMBOL = "-";
+
 	/**
 	 * <pre>
 	 * process
@@ -52,17 +59,17 @@ public class MagicPacketAction {
 	 * @param bean the bean
 	 * @return true, if successful
 	 */
-	public boolean send(MagicPacketBean bean) throws Exception {
+	public boolean send(MagicPacketVO bean) throws Exception {
 		try {
 			byte[] macBytes = getMacBytes(bean.getDestMacAddr());
-			int packetCnt = Constants.FIRST_PACKET_SIZE + (Constants.MAC_ADDRESS_LOOP_SIZE * macBytes.length);
+			int packetCnt = FIRST_PACKET_SIZE + (MAC_ADDRESS_LOOP_SIZE * macBytes.length);
 			byte[] bytes = new byte[packetCnt];
 			// payload packet 생성
-			for (int i = 0; i < Constants.FIRST_PACKET_SIZE; i++) {
+			for (int i = 0; i < FIRST_PACKET_SIZE; i++) {
 				bytes[i] = (byte) 0xff;
 			}
 			// MAC Address byte 정보 16번 bytes 배열에 추가
-			for (int i = Constants.FIRST_PACKET_SIZE; i < bytes.length; i += macBytes.length) {
+			for (int i = FIRST_PACKET_SIZE; i < bytes.length; i += macBytes.length) {
 				System.arraycopy(macBytes, 0, bytes, i, macBytes.length);
 			}
 
@@ -89,7 +96,7 @@ public class MagicPacketAction {
 	 * @throws IllegalArgumentException the illegal argument exception
 	 */
 	private byte[] getMacBytes(String macStr) throws IllegalArgumentException {
-		String[] hex = macStr.split(Constants.MAC_SPLIT_SYMBOL);
+		String[] hex = macStr.split(MAC_SPLIT_SYMBOL);
 		byte[] bytes = new byte[hex.length];
 		for (int i = 0; i < hex.length; i++) {
 			bytes[i] = (byte) Integer.parseInt(hex[i], 16);

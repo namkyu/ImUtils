@@ -1,5 +1,5 @@
 /*
- * @(#)AddActivity.java	2015. 10. 16
+ * @(#)AddActivity.java	2015. 12. 17
  *
  * Copyright(c) 2009 namkyu.
  *
@@ -22,14 +22,23 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import kr.kyu.common.Constants;
 import kr.kyu.db.DBAdapter;
-import kr.kyu.db.WakeOnLanVO;
 import kr.kyu.util.CommonUtil;
+import kr.kyu.vo.WakeOnLanVO;
 
 
 /**
  * The Class AddActivity.
  */
 public class AddActivity extends Activity {
+
+	// Name 입력 테스트 길이 제한
+	private static final int NAME_TEXT_BOX_LIMIT_SIZE = 20;
+	// MAC Address 입력 텍스트 길이 제한
+	private static final int MAC_TEXT_BOX_LIMIT_SIZE = 17;
+	// IP 입력 테스트 길이 제한
+	private static final int IP_TEXT_BOX_LIMIT_SIZE = 20;
+	// Port 입력 텍스트 길이 제한
+	private static final int PORT_TEXT_BOX_LIMIT_SIZE = 20;
 
 	/** The name edit. */
 	private EditText nameEdit;
@@ -68,12 +77,12 @@ public class AddActivity extends Activity {
 		portEdit = (EditText) findViewById(R.id.portTextBox);
 
 		// Edit 박스 길이 제한
-		nameEdit.setFilters(new InputFilter[] { new InputFilter.LengthFilter(Constants.NAME_TEXT_BOX_LIMIT_SIZE) });
-		macEdit.setFilters(new InputFilter[] { new InputFilter.LengthFilter(Constants.MAC_TEXT_BOX_LIMIT_SIZE) });
-		ipEdit.setFilters(new InputFilter[] { new InputFilter.LengthFilter(Constants.IP_TEXT_BOX_LIMIT_SIZE) });
-		portEdit.setFilters(new InputFilter[] { new InputFilter.LengthFilter(Constants.PORT_TEXT_BOX_LIMIT_SIZE) });
+		nameEdit.setFilters(new InputFilter[] { new InputFilter.LengthFilter(NAME_TEXT_BOX_LIMIT_SIZE) });
+		macEdit.setFilters(new InputFilter[] { new InputFilter.LengthFilter(MAC_TEXT_BOX_LIMIT_SIZE) });
+		ipEdit.setFilters(new InputFilter[] { new InputFilter.LengthFilter(IP_TEXT_BOX_LIMIT_SIZE) });
+		portEdit.setFilters(new InputFilter[] { new InputFilter.LengthFilter(PORT_TEXT_BOX_LIMIT_SIZE) });
 
-		// MAC Edit 박스 채우기
+		// MAC Edit change event
 		macEdit.addTextChangedListener(mWatcher);
 
 		// Add 버튼 클릭 이벤트
@@ -86,6 +95,7 @@ public class AddActivity extends Activity {
 				String ipAddress = ipEdit.getText().toString();
 				String port = portEdit.getText().toString();
 
+				// 유효성 검사
 				if (TextUtils.isEmpty(name)) {
 					CommonUtil.showShortToast(AddActivity.this, getString(R.string.nameIsEmpty));
 					return;
@@ -100,11 +110,12 @@ public class AddActivity extends Activity {
 					return;
 				}
 
+				// insert data
 				boolean isSuccess = insertProcess(name, macAddress, ipAddress, port);
-				if (isSuccess) { // 성공
+				if (isSuccess) {
 					String msg = name + " " + getString(R.string.insertSuccess);
 					CommonUtil.showShortToast(AddActivity.this, msg);
-				} else { // 실패
+				} else {
 					CommonUtil.showShortToast(AddActivity.this, getString(R.string.insertFail));
 					return;
 				}
@@ -157,14 +168,14 @@ public class AddActivity extends Activity {
 
 	/** The m watcher. */
 	TextWatcher mWatcher = new TextWatcher() {
-
 		public void afterTextChanged(Editable s) {
+			CommonUtil.d(getClass().getName(), "afterTextChanged");
 		}
-
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+			CommonUtil.d(getClass().getName(), "beforeTextChanged");
 		}
-
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
+			CommonUtil.d(getClass().getName(), "onTextChanged");
 		}
 	};
 }

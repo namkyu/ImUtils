@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<style name="defaultTextStyle">
-		<item name="android:textSize">8pt</item>
-	</style>
-	<style name="yellowTextStyle" parent="@style/defaultTextStyle">
-		<item name="android:textColor">#ffff00</item>
-	    <item name="android:textStyle">italic</item>
-	</style>
-	<style name="textStyle">
-		<item name="android:textSize">11pt</item>
-	</style>
+
+    <style name="defaultTextStyle">
+        <item name="android:textSize">8pt</item>
+    </style>
+
+    <style name="yellowTextStyle" parent="@style/defaultTextStyle">
+        <item name="android:textColor">#ffff00</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="textStyle">
+        <item name="android:textSize">11pt</item>
+    </style>
+
 </resources>

@@ -1,29 +1,17 @@
 /*
- * @(#)Constants.java	2015. 10. 16
- * 
+ * @(#)Constants.java	2015. 12. 17
+ *
  * Copyright(c) 2009 namkyu.
- * 
+ *
  * NOTICE:
  * This source code that is confidential and proprietary to namkyu.
- * No part of this source code may be reproduced in any form 
+ * No part of this source code may be reproduced in any form
  * whatsoever without prior approval by namkyu.
  */
 package kr.kyu.common;
 
 
-/**
- * The Interface Constants.
- */
 public interface Constants {
-
-	public static final int FIRST_PACKET_SIZE = 6; // payload 패킷 사이즈 (FF FF FF FF FF FF)
-	public static final int MAC_ADDRESS_LOOP_SIZE = 16; // MAC Address packet loop size
-	public static final String MAC_SPLIT_SYMBOL = "-"; // MAC Address split symbol
-
-	public static final int NAME_TEXT_BOX_LIMIT_SIZE = 20; // Name 입력 테스트 길이 제한
-	public static final int MAC_TEXT_BOX_LIMIT_SIZE = 17; // MAC Address 입력 텍스트 길이 제한
-	public static final int IP_TEXT_BOX_LIMIT_SIZE = 20; // IP 입력 테스트 길이 제한
-	public static final int PORT_TEXT_BOX_LIMIT_SIZE = 20; // Port 입력 텍스트 길이 제한
 
 	public static final int CURRENT_TAB_LIST_INDEX = 0; // MAC Address 리스트 Activity
 	public static final int CURRENT_TAB_ADD_INDEX = 1;// Add 화면 Activity

@@ -1,24 +1,24 @@
 /*
- * @(#)PopupTheme.java	2015. 10. 16
- * 
+ * @(#)PopupTheme.java	2015. 12. 17
+ *
  * Copyright(c) 2009 namkyu.
- * 
+ *
  * NOTICE:
  * This source code that is confidential and proprietary to namkyu.
- * No part of this source code may be reproduced in any form 
+ * No part of this source code may be reproduced in any form
  * whatsoever without prior approval by namkyu.
  */
 package kr.kyu;
 
-import kr.kyu.common.Constants;
-import kr.kyu.db.DBAdapter;
-import kr.kyu.util.CommonUtil;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import kr.kyu.common.Constants;
+import kr.kyu.db.DBAdapter;
+import kr.kyu.util.CommonUtil;
 
 /**
  * The Class InformationTheme.
@@ -28,10 +28,11 @@ public class PopupTheme extends Activity {
 	/** The db. */
 	DBAdapter db;
 
-	/**<pre>
+	/**
+	 * <pre>
 	 * onCreate
 	 *
-	 * </pre>
+	 * <pre>
 	 * @param savedInstanceState
 	 */
 	@Override
@@ -64,13 +65,13 @@ public class PopupTheme extends Activity {
 				Intent intent = getIntent();
 				String wolId = intent.getStringExtra("wolId");
 
-				boolean isSuccess = db.deleteWol(Integer.parseInt(wolId)); // 삭제
+				// 삭제
+				boolean isSuccess = db.deleteWol(Integer.parseInt(wolId));
 				if (isSuccess) {
 					CommonUtil.showShortToast(PopupTheme.this, getString(R.string.deleteSuccess));
 				} else {
 					CommonUtil.showShortToast(PopupTheme.this, getString(R.string.deleteFail));
 				}
-
 
 				intent = new Intent(PopupTheme.this, ImUtils.class);
 				intent.putExtra("currentIdx", Constants.CURRENT_TAB_LIST_INDEX); // intent 에 parameter key로 설정하여 저장

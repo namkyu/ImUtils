@@ -1,5 +1,5 @@
 /*
- * @(#)DateTimeUtil.java	2015. 10. 16
+ * @(#)DateTimeUtil.java	2015. 12. 17
  * 
  * Copyright(c) 2009 namkyu.
  * 

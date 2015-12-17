@@ -1,5 +1,5 @@
 /*
- * @(#)WakeOnLanAgent.java	2015. 10. 16
+ * @(#)WakeOnLanAgent.java	2015. 12. 17
  * 
  * Copyright(c) 2009 namkyu.
  * 
@@ -10,7 +10,7 @@
  */
 package kr.kyu.udp;
 
-
+import kr.kyu.vo.MagicPacketVO;
 
 /**
  * The Class WakeOnLanAgent.
@@ -27,7 +27,7 @@ public class WakeOnLanAgent {
 	 * @return true, if successful
 	 * @throws Exception the exception
 	 */
-	public boolean packetSend(MagicPacketBean bean) throws Exception {
+	public boolean packetSend(MagicPacketVO bean) throws Exception {
 		MagicPacketAction mgr = new MagicPacketAction();
 		boolean isSuccess = mgr.send(bean);
 		return isSuccess;
