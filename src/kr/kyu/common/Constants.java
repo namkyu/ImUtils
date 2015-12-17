@@ -13,9 +13,10 @@ package kr.kyu.common;
 
 public interface Constants {
 
+	public static final String WOL_ID = "wolId";
+
 	public static final int CURRENT_TAB_LIST_INDEX = 0; // MAC Address 리스트 Activity
 	public static final int CURRENT_TAB_ADD_INDEX = 1;// Add 화면 Activity
-	public static final int CURRENT_TAB_SCHEDULE_INDEX = 2; // Schedule 화면 Activity
 
 	public static final String KEY_NAME = "name"; // name
 	public static final String KEY_MAC_ADDRESS = "mac_address"; // mac_address

@@ -16,6 +16,7 @@ package kr.kyu.vo;
  */
 public class WakeOnLanVO {
 
+	private int wolId;
 	/** The name. */
 	private String name;
 	/** The mac address. */
@@ -24,6 +25,20 @@ public class WakeOnLanVO {
 	private String ipAddress;
 	/** The port. */
 	private String port;
+
+	/**
+	 * @return the wolId
+	 */
+	public int getWolId() {
+		return wolId;
+	}
+
+	/**
+	 * @param wolId the wolId to set
+	 */
+	public void setWolId(int wolId) {
+		this.wolId = wolId;
+	}
 
 	/**
 	 * Gets the name.

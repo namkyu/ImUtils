@@ -46,7 +46,6 @@ public class ImUtils extends TabActivity {
 		Intent intent = getIntent();
 		// intent에 저장되어 있던 currentIdx 값 가져오기
 		int currentIdx = intent.getIntExtra("currentIdx", Constants.CURRENT_TAB_LIST_INDEX);
-
 		tabHost = getTabHost();
 
 		tabHost.addTab(tabHost
@@ -57,7 +56,7 @@ public class ImUtils extends TabActivity {
 		tabHost.addTab(tabHost
 				.newTabSpec(getString(R.string.add))
 				.setIndicator(getString(R.string.add), getResources().getDrawable(R.drawable.add))
-				.setContent(new Intent(this, AddActivity.class)));
+				.setContent(new Intent(this, FormActivity.class)));
 
 		tabHost.addTab(tabHost
 				.newTabSpec(getString(R.string.weather))

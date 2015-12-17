@@ -1,19 +1,19 @@
 /*
  * @(#)CommonUtil.java	2015. 12. 17
- * 
+ *
  * Copyright(c) 2009 namkyu.
- * 
+ *
  * NOTICE:
  * This source code that is confidential and proprietary to namkyu.
- * No part of this source code may be reproduced in any form 
+ * No part of this source code may be reproduced in any form
  * whatsoever without prior approval by namkyu.
  */
 package kr.kyu.util;
 
-import kr.kyu.common.Constants;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
+import kr.kyu.common.Constants;
 
 /**
  * The Class CustomLog.
@@ -21,12 +21,12 @@ import android.widget.Toast;
 public class CommonUtil {
 
 	/**
-	 * D.
+	 * <pre>
+	 * d
 	 *
+	 * <pre>
 	 * @param tag
-	 *            the tag
 	 * @param msg
-	 *            the msg
 	 */
 	public static void d(String tag, String msg) {
 		if (Constants.LOG_STAT) {
@@ -37,12 +37,12 @@ public class CommonUtil {
 	}
 
 	/**
-	 * I.
+	 * <pre>
+	 * i
 	 *
+	 * <pre>
 	 * @param tag
-	 *            the tag
 	 * @param msg
-	 *            the msg
 	 */
 	public static void i(String tag, String msg) {
 		if (Constants.LOG_STAT) {
@@ -53,12 +53,12 @@ public class CommonUtil {
 	}
 
 	/**
-	 * W.
+	 * <pre>
+	 * w
 	 *
+	 * <pre>
 	 * @param tag
-	 *            the tag
 	 * @param msg
-	 *            the msg
 	 */
 	public static void w(String tag, String msg) {
 		if (Constants.LOG_STAT) {
@@ -69,12 +69,12 @@ public class CommonUtil {
 	}
 
 	/**
-	 * E.
+	 * <pre>
+	 * e
 	 *
+	 * <pre>
 	 * @param tag
-	 *            the tag
 	 * @param msg
-	 *            the msg
 	 */
 	public static void e(String tag, String msg) {
 		if (Constants.LOG_STAT) {

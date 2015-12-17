@@ -77,14 +77,31 @@ public class DBAdapter {
 	 * @param vo the vo
 	 * @return the long
 	 */
-	public long insertWakeOnLan(WakeOnLanVO vo) {
+	public boolean insertWakeOnLan(WakeOnLanVO vo) {
 		ContentValues initialValues = new ContentValues();
 		initialValues.put(Constants.KEY_NAME, vo.getName());
 		initialValues.put(Constants.KEY_MAC_ADDRESS, vo.getMacAddress());
 		initialValues.put(Constants.KEY_IP_ADDRESS, vo.getIpAddress());
 		initialValues.put(Constants.KEY_PORT, vo.getPort());
 		initialValues.put(Constants.KEY_CREATE_TIME, DateTimeUtil.getCurrentDate("yyyy-MM-dd"));
-		return sql.insert(Constants.DATABASE_TABLE, null, initialValues);
+		return sql.insert(Constants.DATABASE_TABLE, null, initialValues) > 0;
+	}
+
+	/**
+	 * <pre>
+	 * updateWol
+	 *
+	 * <pre>
+	 * @param vo
+	 * @return
+	 */
+	public boolean updateWol(WakeOnLanVO vo) {
+		ContentValues values = new ContentValues();
+		values.put(Constants.KEY_NAME, vo.getName());
+		values.put(Constants.KEY_MAC_ADDRESS, vo.getMacAddress());
+		values.put(Constants.KEY_IP_ADDRESS, vo.getIpAddress());
+		values.put(Constants.KEY_PORT, vo.getPort());
+		return sql.update(Constants.DATABASE_TABLE, values, Constants.KEY_ID + "=" + vo.getWolId(), null) > 0;
 	}
 
 	/**
@@ -107,13 +124,13 @@ public class DBAdapter {
 	 * @return
 	 */
 	public Cursor wolInfoList() {
-		String[] from = new String[] {
+		String[] colums = new String[] {
 				Constants.KEY_ID,
 				Constants.KEY_NAME,
 				Constants.KEY_MAC_ADDRESS,
 				Constants.KEY_IP_ADDRESS,
 				Constants.KEY_PORT };
-		return sql.query(Constants.DATABASE_TABLE, from, null, null, null, null, null);
+		return sql.query(Constants.DATABASE_TABLE, colums, null, null, null, null, null);
 
 	}
 
@@ -127,33 +144,10 @@ public class DBAdapter {
 	 * @throws SQLException
 	 */
 	public Cursor fetchWol(long id) throws SQLException {
-		Cursor mCursor = sql.query(true, Constants.DATABASE_TABLE, new String[] { Constants.KEY_ID, Constants.KEY_NAME, Constants.KEY_IP_ADDRESS }, Constants.KEY_ID + "=" + id, null, null, null, null, null);
+		Cursor mCursor = sql.query(true, Constants.DATABASE_TABLE, new String[] { Constants.KEY_ID, Constants.KEY_NAME, Constants.KEY_IP_ADDRESS, Constants.KEY_MAC_ADDRESS, Constants.KEY_PORT }, Constants.KEY_ID + "=" + id, null, null, null, null, null);
 		if (mCursor != null) {
 			mCursor.moveToFirst();
 		}
 		return mCursor;
-	}
-
-	/**
-	 * <pre>
-	 * updateBook
-	 *
-	 * </pre>.
-	 *
-	 * @param id the id
-	 * @param name the name
-	 * @param mac the mac
-	 * @param ip the ip
-	 * @param port the port
-	 * @return true, if successful
-	 */
-	public boolean updateWol(int id, String name, String mac, String ip, String port) {
-		ContentValues values = new ContentValues();
-		values.put(Constants.KEY_NAME, name);
-		values.put(Constants.KEY_MAC_ADDRESS, mac);
-		values.put(Constants.KEY_IP_ADDRESS, ip);
-		values.put(Constants.KEY_PORT, port);
-
-		return sql.update(Constants.DATABASE_TABLE, values, Constants.KEY_ID + "=" + id, null) > 0;
 	}
 }

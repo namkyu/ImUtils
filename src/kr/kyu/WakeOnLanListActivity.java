@@ -10,6 +10,8 @@
  */
 package kr.kyu;
 
+import static kr.kyu.common.Constants.*;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -74,11 +76,11 @@ public class WakeOnLanListActivity extends ListActivity {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 				Cursor cursor = (Cursor) adapter.getItem(position);
-				String wolId = cursor.getString(cursor.getColumnIndex(Constants.KEY_ID));
+				int wolId = cursor.getInt(cursor.getColumnIndex(Constants.KEY_ID));
 
 				// 팝업 Activity
 				Intent intent = new Intent(WakeOnLanListActivity.this, PopupTheme.class);
-				intent.putExtra("wolId", wolId);
+				intent.putExtra(WOL_ID, wolId);
 				startActivity(intent);
 
 				longTouchFlag = true;

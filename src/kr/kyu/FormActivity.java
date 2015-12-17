@@ -10,8 +10,11 @@
  */
 package kr.kyu;
 
+import static kr.kyu.common.Constants.*;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -29,7 +32,7 @@ import kr.kyu.vo.WakeOnLanVO;
 /**
  * The Class AddActivity.
  */
-public class AddActivity extends Activity {
+public class FormActivity extends Activity {
 
 	// Name 입력 테스트 길이 제한
 	private static final int NAME_TEXT_BOX_LIMIT_SIZE = 20;
@@ -57,6 +60,21 @@ public class AddActivity extends Activity {
 
 	/**
 	 * <pre>
+	 * isUpdate
+	 *
+	 * <pre>
+	 * @param value
+	 * @return
+	 */
+	private boolean isUpdate(String value) {
+		if (value != null && "update".equals(value)) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * <pre>
 	 * onCreate
 	 *
 	 * </pre>.
@@ -68,6 +86,7 @@ public class AddActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_layout);
 
+		// sqlite open
 		db = new DBAdapter(this);
 		db.open();
 
@@ -85,6 +104,23 @@ public class AddActivity extends Activity {
 		// MAC Edit change event
 		macEdit.addTextChangedListener(mWatcher);
 
+		// intent information
+		Intent intent = getIntent();
+		final int wolId = intent.getIntExtra(WOL_ID, 0);
+		final boolean updateMode = isUpdate(intent.getStringExtra("mode"));
+
+		if (updateMode) {
+			Cursor cursor = db.fetchWol(wolId);
+			String name = cursor.getString(cursor.getColumnIndex(Constants.KEY_NAME));
+			String mac = cursor.getString(cursor.getColumnIndex(Constants.KEY_MAC_ADDRESS));
+			String ip = cursor.getString(cursor.getColumnIndex(Constants.KEY_IP_ADDRESS));
+			String port = cursor.getString(cursor.getColumnIndex(Constants.KEY_PORT));
+			nameEdit.setText(name);
+			macEdit.setText(mac);
+			ipEdit.setText(ip);
+			portEdit.setText(port);
+		}
+
 		// Add 버튼 클릭 이벤트
 		ImageButton addButton = (ImageButton) findViewById(R.id.addButton);
 		addButton.setOnClickListener(new View.OnClickListener() {
@@ -97,54 +133,48 @@ public class AddActivity extends Activity {
 
 				// 유효성 검사
 				if (TextUtils.isEmpty(name)) {
-					CommonUtil.showShortToast(AddActivity.this, getString(R.string.nameIsEmpty));
+					CommonUtil.showShortToast(FormActivity.this, getString(R.string.nameIsEmpty));
 					return;
 				} else if (TextUtils.isEmpty(macAddress)) {
-					CommonUtil.showShortToast(AddActivity.this, getString(R.string.macAddressIsEmpty));
+					CommonUtil.showShortToast(FormActivity.this, getString(R.string.macAddressIsEmpty));
 					return;
 				} else if (TextUtils.isEmpty(ipAddress)) {
-					CommonUtil.showShortToast(AddActivity.this, getString(R.string.ipAddressIsEmpty));
+					CommonUtil.showShortToast(FormActivity.this, getString(R.string.ipAddressIsEmpty));
 					return;
 				} else if (TextUtils.isEmpty(port)) {
-					CommonUtil.showShortToast(AddActivity.this, getString(R.string.portIsEmpty));
+					CommonUtil.showShortToast(FormActivity.this, getString(R.string.portIsEmpty));
 					return;
 				}
 
-				// insert data
-				boolean isSuccess = insertProcess(name, macAddress, ipAddress, port);
-				if (isSuccess) {
-					String msg = name + " " + getString(R.string.insertSuccess);
-					CommonUtil.showShortToast(AddActivity.this, msg);
-				} else {
-					CommonUtil.showShortToast(AddActivity.this, getString(R.string.insertFail));
-					return;
-				}
-
-				// 첫 번째 인자는 현재 컨텍스트이고, 두 번째 인자는 호출 할 Activity의 class 이다.
-				Intent intent = new Intent(AddActivity.this, ImUtils.class);
-				intent.putExtra("currentIdx", Constants.CURRENT_TAB_LIST_INDEX); // intent 에 parameter key로 설정하여 저장
-				startActivity(intent);
-			}
-
-			/**
-			 * <pre>
-			 * insertProcess
-			 *
-			 * </pre>
-			 * @param name
-			 * @param macAddress
-			 * @param ipAddress
-			 * @param port
-			 * @return
-			 */
-			private boolean insertProcess(String name, String macAddress, String ipAddress, String port) {
+				// vo setting
 				WakeOnLanVO vo = new WakeOnLanVO();
+				vo.setWolId(wolId);
 				vo.setName(name);
 				vo.setMacAddress(macAddress);
 				vo.setIpAddress(ipAddress);
 				vo.setPort(port);
 
-				return db.insertWakeOnLan(vo) > 0;
+				// save
+				boolean saveSuccess = false;
+				if (updateMode) {
+					saveSuccess = db.updateWol(vo);
+				} else {
+					saveSuccess = db.insertWakeOnLan(vo);
+				}
+
+				// message
+				if (saveSuccess) {
+					String msg = name + " " + getString(R.string.saveSuccess);
+					CommonUtil.showShortToast(FormActivity.this, msg);
+				} else {
+					CommonUtil.showShortToast(FormActivity.this, getString(R.string.saveFail));
+					return;
+				}
+
+				// 첫 번째 인자는 현재 컨텍스트이고, 두 번째 인자는 호출 할 Activity의 class 이다.
+				Intent intent = new Intent(FormActivity.this, ImUtils.class);
+				intent.putExtra("currentIdx", Constants.CURRENT_TAB_LIST_INDEX); // intent 에 parameter key로 설정하여 저장
+				startActivity(intent);
 			}
 		});
 

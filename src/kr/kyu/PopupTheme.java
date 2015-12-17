@@ -10,6 +10,8 @@
  */
 package kr.kyu;
 
+import static kr.kyu.common.Constants.*;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -50,9 +52,13 @@ public class PopupTheme extends Activity {
 			@Override
 			public void onClick(View view) {
 				Intent intent = getIntent();
-				intent = new Intent(PopupTheme.this, ImUtils.class);
+				int wolId = intent.getIntExtra(WOL_ID, 0);
+
+				intent = new Intent(PopupTheme.this, FormActivity.class);
 				intent.putExtra("currentIdx", Constants.CURRENT_TAB_ADD_INDEX); // intent 에 parameter key로 설정하여 저장
 				intent.putExtra("mode", "update");
+				intent.putExtra(WOL_ID, wolId);
+
 				startActivity(intent);
 			}
 		});
@@ -63,10 +69,10 @@ public class PopupTheme extends Activity {
 			@Override
 			public void onClick(View view) {
 				Intent intent = getIntent();
-				String wolId = intent.getStringExtra("wolId");
+				int wolId = intent.getIntExtra(WOL_ID, 0);
 
 				// 삭제
-				boolean isSuccess = db.deleteWol(Integer.parseInt(wolId));
+				boolean isSuccess = db.deleteWol(wolId);
 				if (isSuccess) {
 					CommonUtil.showShortToast(PopupTheme.this, getString(R.string.deleteSuccess));
 				} else {
