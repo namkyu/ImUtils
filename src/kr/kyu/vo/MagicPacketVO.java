@@ -1,5 +1,5 @@
 /*
- * @(#)MagicPacketBean.java	2015. 12. 17
+ * @(#)MagicPacketVO.java	2015. 12. 23
  * 
  * Copyright(c) 2009 namkyu.
  * 

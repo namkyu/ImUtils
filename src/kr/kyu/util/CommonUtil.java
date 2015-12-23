@@ -1,5 +1,5 @@
 /*
- * @(#)CommonUtil.java	2015. 12. 17
+ * @(#)CommonUtil.java	2015. 12. 23
  *
  * Copyright(c) 2009 namkyu.
  *
@@ -104,7 +104,7 @@ public class CommonUtil {
 	 * @param context
 	 * @param msg
 	 */
-	public static void showLongToast(Context context, String msg) {
-		Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+	public static void showLongToast(Context context, String msg, int interval) {
+		Toast.makeText(context, msg, interval).show();
 	}
 }

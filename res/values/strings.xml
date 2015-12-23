@@ -28,6 +28,9 @@
     <string name="weatherText2">예보 등급</string>
     <string name="weatherText3">행동 요령</string>
     
+    <!-- dinner service 관련 정보 -->
+    <string name="dinnerMsg">석식 신청하세요.</string>
+    
     <!-- popup activity 관련 정보 -->
     <string name="information">안녕하세요 I am Utils 애플리케이션 개발자 이남규입니다.<br/>회사 생활을 하면서 필요한 유틸들을 모았습니다.
 	</string>

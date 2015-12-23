@@ -1,5 +1,5 @@
 /*
- * @(#)ImUtils.java	2015. 12. 17
+ * @(#)ImUtils.java	2015. 12. 23
  *
  * Copyright(c) 2009 namkyu.
  *
@@ -41,6 +41,7 @@ public class ImUtils extends TabActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_activity);
+		startService(new Intent(this, DinnerService.class)); // service
 
 		// 현재의 Activity를 호출한 Intent를 가져온다.
 		Intent intent = getIntent();

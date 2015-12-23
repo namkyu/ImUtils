@@ -1,5 +1,5 @@
 /*
- * @(#)WeatherActivity.java	2015. 12. 17
+ * @(#)WeatherActivity.java	2015. 12. 23
  *
  * Copyright(c) 2009 namkyu.
  *

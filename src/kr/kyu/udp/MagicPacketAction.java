@@ -1,5 +1,5 @@
 /*
- * @(#)MagicPacketAction.java	2015. 12. 17
+ * @(#)MagicPacketAction.java	2015. 12. 23
  * 
  * Copyright(c) 2009 namkyu.
  * 
