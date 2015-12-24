@@ -28,6 +28,8 @@ public class DinnerService extends Service {
 	public static final long NOTIFY_INTERVAL = 20 * 1000;
 	public static final long VIBRATE_INTERVAL = 10 * 1000;
 	public static final String COMPANY_WIFI_NAME = "NCMobile";
+	public static final int START_TIME = 200000;
+	public static final int END_TIME = START_TIME + 100;
 
 	// run on another Thread to avoid crash
 	private Handler mHandler = new Handler();
@@ -64,7 +66,7 @@ public class DinnerService extends Service {
 					if (isCompanyWifi()) {
 						String timeStr = new SimpleDateFormat("HHmmss", Locale.KOREA).format(new Date());
 						int time = Integer.parseInt(timeStr);
-						if (200000 <= time && time < 200100) {
+						if (START_TIME <= time && time < END_TIME) {
 							CommonUtil.showLongToast(getApplicationContext(), getString(R.string.dinnerMsg), (int) VIBRATE_INTERVAL);
 							Vibrator mVibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 							mVibe.vibrate(VIBRATE_INTERVAL);
