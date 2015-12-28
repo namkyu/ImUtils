@@ -14,7 +14,6 @@ import android.net.wifi.WifiManager;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Vibrator;
-import android.widget.Toast;
 import kr.kyu.util.CommonUtil;
 
 /**
@@ -60,7 +59,7 @@ public class DinnerService extends Service {
 			mHandler.post(new Runnable() {
 				@Override
 				public void run() {
-					Toast.makeText(getApplicationContext(), getDateTime(), Toast.LENGTH_SHORT).show();
+//					Toast.makeText(getApplicationContext(), getDateTime(), Toast.LENGTH_SHORT).show();
 
 					// 회사 wifi 여부 체크
 					if (isCompanyWifi()) {
