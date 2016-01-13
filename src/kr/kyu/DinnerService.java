@@ -50,7 +50,7 @@ public class DinnerService extends Service {
 			mTimer = new Timer();
 		}
 		// schedule task
-		mTimer.scheduleAtFixedRate(new TimeDisplayTimerTask(), 0, NOTIFY_INTERVAL);
+//		mTimer.scheduleAtFixedRate(new TimeDisplayTimerTask(), 0, NOTIFY_INTERVAL);
 	}
 
 	class TimeDisplayTimerTask extends TimerTask {
